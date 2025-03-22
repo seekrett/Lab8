@@ -35,8 +35,7 @@ KeyValuePair* createKeyValuePair(const char* key, const char* value) {
     return pair;
 }
 
-// Create the Hash Table. [Hint: you need to allocate memory for the Hash Table, and set all {key, value}
-// pairs to NULL since they are not used) 
+// Create the Hash Table
 HashTable* createHashTable() {
     // allocate memory
     HashTable* hashtable = (HashTable*) malloc(sizeof(HashTable));
@@ -49,12 +48,24 @@ HashTable* createHashTable() {
     return hashtable;
 }
 
-// Define a function to free up the memory of a {key, value} pair. 
+// Define a function to free up the memory of a {key, value} pair
 void freePair(KeyValuePair* pair) {
-    // check if NULL
+    // check if not NULL
     if (pair) {
         free(pair->key);
         free(pair->value);
         free(pair);
     }
+}
+
+// Define a function to free up the memory of the Hash Table
+void freeHashTable(HashTable* hashtable) {
+    // free each item
+    for (int i = 0; i < TABLESIZE; i++) {
+        // check if not NULL
+        if (hashtable->items[i]) {
+            freeKeyValuePair(hashtable->items[i]);
+        }
+    }
+    free(hashtable);
 }
