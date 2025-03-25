@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define TABLESIZE 100
+#define TABLESIZE 500
 
 // Define {key, value} structure
 typedef struct {
@@ -134,17 +134,18 @@ char* search(HashTable* hashtable, const char* key) {
 void displaySearchResult(HashTable* hashtable, const char* key) {
     char* value = search(hashtable, key);
     if (value) {
-        printf("Key: %s, Value: %s\n", key, value);
+        printf("KEY: %s\tVALUE: %s\n", key, value);
     } else {
-        printf("Key: %s not found\n", key);
+        printf("KEY: %s not found\n", key);
     }
 }
 
 // Display the entire Hash Table
 void displayHashTable(HashTable* hashtable) {
+    printf("INDEX\tKEY\tVALUE\n");
     for (int i = 0; i < TABLESIZE; i++) {
         if (hashtable->items[i] != NULL) {
-            printf("Index: %d, Key: %s, Value: %s\n", i, hashtable->items[i]->key, hashtable->items[i]->value);
+            printf("%d\t%s\t%s\n", i, hashtable->items[i]->key, hashtable->items[i]->value);
         }
     }
 }
@@ -159,15 +160,18 @@ int main() {
     insert(hashtable, "city", "Wonderland");
 
     // Display the hash table contents
+    printf("--- HASH TABLE CONTENTS ---\n");
     displayHashTable(hashtable);
 
     // Display search results
+    printf("--- SEARCH RESULTS ---\n");
     displaySearchResult(hashtable, "name");
     displaySearchResult(hashtable, "age");
     displaySearchResult(hashtable, "country");
 
     // Delete a key-value pair and display the table again
     delete(hashtable, "age");
+    printf("--- HASH TABLE CONTENTS (modified) ---\n");
     displayHashTable(hashtable);
 
     // Free up memory used by the hash table
