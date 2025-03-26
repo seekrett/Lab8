@@ -1,8 +1,11 @@
+// This program returns indices of two numbers in an array of integers such
+// that they add up to a specific target.
+
+// include statements
 #include <stdio.h>
 
-// Function to find two numbers that add up to target
-// Returns indices through pointer parameters
-// Returns 1 if found, 0 if not found
+// finds two numbers that add up to the target
+// returns 1 if found, 0 if not
 int twoSumNested(int* nums, int numsSize, int target, int* index1, int* index2) {
     // Outer loop goes through each element
     for (int i = 0; i < numsSize - 1; i++) {
